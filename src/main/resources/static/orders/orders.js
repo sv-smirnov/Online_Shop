@@ -14,14 +14,19 @@ angular.module('market-front').controller('orderController', function ($scope, $
                 });}
 
     $scope.checkOut = function () {
-        $http({
-            url: contextPath + '/orders/' + $localStorage.cartName,
-            method: 'POST',
-            data: {orderDetailsDto: $scope.orderDetailsDto}
-        }).then(function (response) {
+    if ($scope.orderDetailsDto == null)
+    {alert("Заполните детали заказа");}
+    else {
+        $http.post(contextPath + '/orders/' + $localStorage.cartName, $scope.orderDetailsDto
+//            url: contextPath + '/orders/' + $localStorage.cartName,
+//            method: 'POST',
+//            data: {$scope.orderDetailsDto}
+        ).then(function (response) {
                 $scope.loadCart();
-                $scope.orderDetailsDto = null
+                $scope.orderDetailsDto = null;
+                alert($scope.orderDetailsDto.address);
             });
+        }
     };
 
     $scope.disabledCheckOut = function () {
