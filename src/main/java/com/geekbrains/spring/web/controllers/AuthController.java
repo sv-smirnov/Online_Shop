@@ -27,6 +27,7 @@ public class AuthController {
     public ResponseEntity<?> createAuthToken(@RequestBody JwtRequest authRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+            System.out.println("Пользователь " + authRequest.getUsername() + " подключился к интернет-магазину.");
         } catch (BadCredentialsException e) {
             return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Incorrect username or password"), HttpStatus.UNAUTHORIZED);
         }
