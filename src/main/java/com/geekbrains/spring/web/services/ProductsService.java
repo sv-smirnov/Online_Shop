@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -32,6 +33,9 @@ public class ProductsService {
         }
 
         return productsRepository.findAll(spec, PageRequest.of(page - 1, 50));
+    }
+    public List<Product> findAll() {
+        return productsRepository.findAll();
     }
 
     public Optional<Product> findById(Long id) {
