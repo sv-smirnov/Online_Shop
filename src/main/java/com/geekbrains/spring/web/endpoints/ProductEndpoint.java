@@ -1,14 +1,14 @@
 package com.geekbrains.spring.web.endpoints;
 
 import com.geekbrains.spring.web.services.ProductsService;
-import com.geekbrains.spring.web.soap.GetAllProductsRequest;
-import com.geekbrains.spring.web.soap.GetAllProductsResponse;
-import com.geekbrains.spring.web.soap.Product;
+import com.geekbrains.spring.web.soap.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
+
+import java.util.Optional;
 
 @Endpoint
 @RequiredArgsConstructor
@@ -29,6 +29,15 @@ public class ProductEndpoint {
             product.setPrice(u.getPrice());
             response.getProducts().add(product);
         });
+        return response;
+    }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getProductsRequest")
+    @ResponsePayload
+    public GetProductsResponse getProductById(@RequestPayload GetProductsRequest request) {
+        GetProductsResponse response = new GetProductsResponse();
+        Optional<com.geekbrains.spring.web.entities.Product> product = productsService.findById(request.getId());
+            response.getProduct(product);
         return response;
     }
 }
