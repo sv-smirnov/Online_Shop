@@ -36,8 +36,13 @@ public class ProductEndpoint {
     @ResponsePayload
     public GetProductsResponse getProductById(@RequestPayload GetProductsRequest request) {
         GetProductsResponse response = new GetProductsResponse();
-        Optional<com.geekbrains.spring.web.entities.Product> product = productsService.findById(request.getId());
-            response.getProduct(product);
+        Product product = new Product();
+        product.setTitle(productsService.findById(request.getId()).get().getTitle());
+        product.setPrice(productsService.findById(request.getId()).get().getPrice());
+        product.setId(productsService.findById(request.getId()).get().getId());
+        response.setProduct(product);
+//        Optional<com.geekbrains.spring.web.entities.Product> product = productsService.findById(request.getId());
+//            response.getProduct(product);
         return response;
     }
 }
