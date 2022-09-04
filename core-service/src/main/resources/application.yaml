@@ -1,0 +1,34 @@
+server:
+  port: 8189
+  servlet:
+    context-path: /web-market-core
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:mydatabase;MODE=PostgreSQL
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+  cache:
+    default:
+      expire-time: 700000000
+    user:
+      expire-time: 100
+      name: "Cart"
+
+other:
+  cache:
+    cart: "Cart"
+
