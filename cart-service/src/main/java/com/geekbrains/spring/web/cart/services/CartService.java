@@ -1,15 +1,16 @@
 package com.geekbrains.spring.web.cart.services;
 
+import com.geekbrains.spring.web.cart.api.ProductApi;
 import com.geekbrains.spring.web.cart.dto.Cart;
 import com.geekbrains.spring.web.cart.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
@@ -18,10 +19,12 @@ import java.util.Optional;
 public class CartService {
     @Qualifier("test")
     private final CacheManager cacheManager;
-    private final RestTemplate restTemplate;
+//    private final RestTemplate restTemplate;
     @Value("${spring.cache.user.name}")
     private String CACHE_CART;
     private Cart cart;
+    @Autowired
+    private ProductApi productApi;
 
     @Cacheable(value = "Cart", key = "#cartName")
     public Cart getCurrentCart(String cartName){
@@ -38,7 +41,8 @@ public class CartService {
         Cart cart = getCurrentCart(cartName);
         if(!cart.addProductCount(id)) {
             ProductDto product =
-                    restTemplate.getForObject("http://localhost:8189/web-market-core/api/v1/products/" + id, ProductDto.class);
+//                    restTemplate.getForObject("http://localhost:8189/web-market-core/api/v1/products/" + id, ProductDto.class);
+                    productApi.getProductById(id);
             cart.addProduct(product);
         }
             return cart;
@@ -55,7 +59,9 @@ public class CartService {
     public Cart removeProductByIdFromCart(Long id, String cartName) {
         Cart cart = getCurrentCart(cartName);
         if (!cart.decreaseProductCount(id)) {
-            ProductDto product = restTemplate.getForObject("http://localhost:8189/web-market-core/api/v1/products/" + id, ProductDto.class);
+            ProductDto product =
+//                    restTemplate.getForObject("http://localhost:8189/web-market-core/api/v1/products/" + id, ProductDto.class);
+            productApi.getProductById(id);
             cart.decreaseProduct(id);
         }
         return cart;

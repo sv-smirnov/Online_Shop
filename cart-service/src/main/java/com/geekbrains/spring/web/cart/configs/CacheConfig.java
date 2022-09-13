@@ -59,10 +59,10 @@ public class CacheConfig {
         return cacheManager;
     }
 
-    @Bean
-    public RestTemplate restTemplate(){
-        return new RestTemplate();
-    }
+//    @Bean
+//    public RestTemplate restTemplate(){
+//        return new RestTemplate();
+//    }
 
 
 }

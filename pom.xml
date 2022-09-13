@@ -9,7 +9,8 @@
 		<module>cart-service</module>
 		<module>core-service</module>
 		<module>front-service</module>
-	</modules>
+        <module>order-service</module>
+    </modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

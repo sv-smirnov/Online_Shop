@@ -1,16 +1,15 @@
-package com.geekbrains.spring.web.cart;
+package com.geekbrains.spring.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients
+
 @SpringBootApplication
 @EnableCaching
-public class CartApp {
-
-    public static void main(String[] args) {
-        SpringApplication.run(CartApp.class, args);
-    }
+public class CoreApp {
+	public static void main(String[] args) {
+		SpringApplication.run(CoreApp.class, args);
+	}
 }
