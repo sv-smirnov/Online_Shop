@@ -7,10 +7,11 @@
 		<module>Gateway</module>
         <module>auth-service</module>
 		<module>cart-service</module>
-		<module>core-service</module>
+		<module>product-service</module>
 		<module>front-service</module>
         <module>order-service</module>
-    </modules>
+		<module>config</module>
+	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -40,6 +41,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.11</version>
 		</dependency>
 	</dependencies>
 
