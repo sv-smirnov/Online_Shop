@@ -1,6 +1,7 @@
 package com.geekbrains.spring.web.order.dto;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,13 @@ import lombok.NoArgsConstructor;
 public class OrderItemDto {
 
     private Long productId;
+    @Schema(description = "Название продукта", example = "Milk")
     private String title;
+    @Schema(description = "Количество", example = "2")
     private int quantity;
+    @Schema(description = "Цена за еденицу", example = "100")
     private int pricePerProduct;
+    @Schema(description = "Общая сумма товаров", example = "200")
     private int price;
 
     public OrderItemDto(ProductDto product){
