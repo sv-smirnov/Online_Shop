@@ -18,6 +18,10 @@
                 templateUrl: 'orders/orders.html',
                 controller: 'orderController'
             })
+            .when('/order_pay/:orderId', {
+                templateUrl: 'paypal/order_pay.html',
+                controller: 'PayPalController'
+            })
             .otherwise({
                 redirectTo: '/'
             });

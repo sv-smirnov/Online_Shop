@@ -73,5 +73,8 @@ public class OrderService {
             return new ArrayList<>();
         }
     }
+    public Order findOrderById(Long id) {
+        return orderRepository.findById(id).orElseThrow();
+    }
 
 }

@@ -40,6 +40,11 @@ angular.module('market-front').controller('orderController', function ($scope, $
                 return false;
             }
         };
+
+    $scope.goToPay = function(orderId) {
+    $http.put('http://localhost:5555/order/api/v1/orders/qiwi/' + orderId)
+        }
+
     $scope.loadOrders();
     $scope.loadCart();
 
