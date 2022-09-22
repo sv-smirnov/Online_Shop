@@ -12,8 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,9 +53,10 @@ public class OrderController {
     }
     @Operation(description = "Получить заказ по id")
     @GetMapping("/{id}")
-    public OrderDto getOrderById (@RequestHeader Long id){
+    public OrderDto getOrderById (@PathVariable Long id){
         return orderConverter.entityToDto(orderService.findOrderById(id));
     }
+
     @Operation(description = "Создать оплату через QIWI")
     @PutMapping ("/qiwi/{orderId}")
     public void createBill(@PathVariable Long orderId) throws IOException, URISyntaxException {

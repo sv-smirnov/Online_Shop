@@ -5,6 +5,7 @@ import com.qiwi.billpayments.sdk.model.MoneyAmount;
 import com.qiwi.billpayments.sdk.model.in.CreateBillInfo;
 import com.qiwi.billpayments.sdk.model.in.Customer;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ import java.time.ZonedDateTime;
 import java.util.Currency;
 import java.util.UUID;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class QiwiService {
 
@@ -23,11 +24,11 @@ public class QiwiService {
         CreateBillInfo billInfo = new CreateBillInfo(
         UUID.randomUUID().toString(),
                 new MoneyAmount(
-                        BigDecimal.valueOf(order.getTotalPrice()),
+                        BigDecimal.valueOf(1),
                         Currency.getInstance("RUB")), "Заказ № " + orderId,
                 ZonedDateTime.now().plusDays(45),
-                new Customer(order.getAddress(), orderId.toString(), order.getPhone()),
-                "http://localhost:3000/front"
+                new Customer("mail@example.org", UUID.randomUUID().toString(), "79123456789"),
+                "http://localhost:3000/front/#!/store"
         );
                 return billInfo;
     }

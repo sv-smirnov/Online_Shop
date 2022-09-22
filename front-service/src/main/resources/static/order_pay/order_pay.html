@@ -1,11 +1,13 @@
 <div>
+    <script src='https://oplata.qiwi.com/popup/v1.js'></script>
     <p></p>
     <h3>Ваш заказ</h3>
+
     <span>ID: {{order.id}}</span>
     <span>Цена: {{order.totalPrice}}</span>
     <span>Адрес: {{order.address}}</span>
     <span>Телефон: {{order.phone}}</span>
+
     <p></p>
-    <h3>Оплатить</h3>
-    <div id = "paypal-buttons"></div>
+    <button class="btn btn-primary" ng-click="renderPaymentButtons()">Оплатить</button>
 </div>

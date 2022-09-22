@@ -1,4 +1,4 @@
-angular.module('market-front').controller('orderController', function ($scope, $rootScope, $http, $localStorage) {
+angular.module('market-front').controller('orderController', function ($scope, $rootScope, $http, $localStorage, $location) {
     const contextPath = 'http://localhost:5555/order/api/v1';
 
     $scope.loadOrders = function () {
@@ -41,9 +41,13 @@ angular.module('market-front').controller('orderController', function ($scope, $
             }
         };
 
-    $scope.goToPay = function(orderId) {
-    $http.put('http://localhost:5555/order/api/v1/orders/qiwi/' + orderId)
-        }
+//    $scope.goToPay = function(orderId) {
+//    $http.put('http://localhost:5555/order/api/v1/orders/qiwi/' + orderId)
+//        }
+
+    $scope.goToPay = function (orderId) {
+        $location.path('/order_pay/' + orderId);
+    }
 
     $scope.loadOrders();
     $scope.loadCart();

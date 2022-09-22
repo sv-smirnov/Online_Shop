@@ -11,6 +11,16 @@
 
     <artifactId>order-service</artifactId>
 
+    <repositories>
+        <repository>
+            <id>bill-payments-mvn-repo</id>
+            <url>https://raw.github.com/PukPukov/bill-payments-java-sdk/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -64,7 +74,7 @@
         <dependency>
             <groupId>com.qiwi</groupId>
             <artifactId>bill-payments-java-sdk</artifactId>
-            <version>1.5.0</version>
+            <version>1.5.1</version>
         </dependency>
 
     </dependencies>
