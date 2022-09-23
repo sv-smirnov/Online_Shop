@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-
     @Query("select o from Order o where o.username like :username")
     List<Order> findByUsername(String username);
+
+    @Query("select o from Order o where o.billId like :billId")
+    Order findByBillId(String billId);
 }

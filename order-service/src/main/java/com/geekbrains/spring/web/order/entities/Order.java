@@ -37,4 +37,8 @@ public class Order {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    private String billId;
+
+    private String status;
 }

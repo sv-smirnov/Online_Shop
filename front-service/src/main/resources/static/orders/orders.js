@@ -49,6 +49,14 @@ angular.module('market-front').controller('orderController', function ($scope, $
         $location.path('/order_pay/' + orderId);
     }
 
+        $rootScope.isOrderPaid = function () {
+            if ($scope.order.status == "COMPETED") {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
     $scope.loadOrders();
     $scope.loadCart();
 

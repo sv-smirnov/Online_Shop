@@ -30,6 +30,10 @@ public class QiwiService {
                 new Customer("mail@example.org", UUID.randomUUID().toString(), "79123456789"),
                 "http://localhost:3000/front/#!/store"
         );
+        orderService.findOrderById(orderId).setBillId(billInfo.getBillId());
                 return billInfo;
+    }
+    public void makePaid (String billId) {
+        orderService.findOrderByBillId(billId).setStatus("COMPLETED");
     }
 }

@@ -1,6 +1,7 @@
 package com.geekbrains.spring.web.order.controllers;
 
 import com.geekbrains.spring.web.order.dto.QiwiResponse;
+import com.geekbrains.spring.web.order.services.OrderService;
 import com.geekbrains.spring.web.order.services.QiwiService;
 import com.qiwi.billpayments.sdk.client.BillPaymentClient;
 import com.qiwi.billpayments.sdk.client.BillPaymentClientFactory;
@@ -25,9 +26,10 @@ public class QiwiController {
 //    @Value("${qiwi.secret-key}")
 //    private String secretKey;
 
+    private final OrderService orderService;
     private final QiwiService qiwiService;
-    private String secretKey = "eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6Ijc5OWVibC0wMCIsInVzZXJfaWQiOiI3OTE5MjMwMTI0NCIsInNlY3JldCI6ImUyNmYwNDg4NTEwZGVkNTI0M2VmMzhjNDAxMjQ2MWUzMmM1ZjQ3Y2U5NzExOTIwODJkMzE2MTlmNTA2NDlhOGUifX0=";
-    private BillPaymentClient billPaymentClient = BillPaymentClientFactory.createDefault(secretKey);
+    private final BillPaymentClient billPaymentClient;
+//    private BillPaymentClient billPaymentClient = BillPaymentClientFactory.createDefault(secretKey);
 
     //ToDo - заменить secretKey на свой, после регистрации на QIWI
 
@@ -47,6 +49,7 @@ public class QiwiController {
         BillResponse response = billPaymentClient.getBillInfo(billId);
         if("COMPLETED".equals(response.getStatus())) {
             //ToDo сделать обработку статуса
+            qiwiService.makePaid(billId);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

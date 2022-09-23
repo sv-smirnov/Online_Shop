@@ -17,13 +17,16 @@ angular.module('market-front').controller('qiwiController', function ($scope, $h
             $scope.billid = response.data.billid;
             params = {
                 payUrl: response.data.responseUrl,
-//                customFields: {
-//                    themeCode:"Maksym-GeLno-j5g0"
-//                }
+                customFields: {
+                    themeCode:"Maksym-GeLno-j5g0"
+                }
             }
             QiwiCheckout.openInvoice(params)
                 .then(function (onFullField){
-                    $location.path("http://localhost:3000/front") // Заглушка. ToDo при корректной отправке платежа, необходимо отправить запрос на /capture/{billId} (billid уже задан в scope)
+                        $http.post('http://localhost:5555/order/api/v1/qiwi/capture/' + $scope.billid)
+                            .then(function (response) {
+                            });
+                     // Заглушка. ToDo при корректной отправке платежа, необходимо отправить запрос на /capture/{billId} (billid уже задан в scope)
                 })
                 .then(function (onRejection){
                     $location.path("http://localhost:3000/front")

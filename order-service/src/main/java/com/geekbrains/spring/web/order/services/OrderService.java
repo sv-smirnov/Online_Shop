@@ -77,4 +77,8 @@ public class OrderService {
         return orderRepository.findById(id).orElseThrow();
     }
 
+    public Order findOrderByBillId(String billId) {
+        return orderRepository.findByBillId(billId);
+    }
+
 }
