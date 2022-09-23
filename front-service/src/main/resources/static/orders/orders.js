@@ -47,15 +47,18 @@ angular.module('market-front').controller('orderController', function ($scope, $
 
     $scope.goToPay = function (orderId) {
         $location.path('/order_pay/' + orderId);
-    }
+    };
 
-        $rootScope.isOrderPaid = function () {
-            if ($scope.order.status == "COMPETED") {
-                return true;
-            } else {
+    $scope.isOrderPaid = function (orderId) {
+    $http.get('http://localhost:5555/order/api/v1/orders/' + orderId)
+        .then(function (response) {
+        $scope.order = response.data;});
+                if (order.status == "COMPLETED") {
+                    return true;
+                } else {
                 return false;
-            }
-        };
+                }
+    };
 
     $scope.loadOrders();
     $scope.loadCart();

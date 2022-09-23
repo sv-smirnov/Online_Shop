@@ -25,6 +25,7 @@ angular.module('market-front').controller('qiwiController', function ($scope, $h
                 .then(function (onFullField){
                         $http.post('http://localhost:5555/order/api/v1/qiwi/capture/' + $scope.billid)
                             .then(function (response) {
+                            $scope.status = response.data.status;
                             });
                      // Заглушка. ToDo при корректной отправке платежа, необходимо отправить запрос на /capture/{billId} (billid уже задан в scope)
                 })
@@ -34,8 +35,6 @@ angular.module('market-front').controller('qiwiController', function ($scope, $h
 
         });
     };
-
-
 
     $scope.loadOrder();
 });

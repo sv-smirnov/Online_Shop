@@ -83,4 +83,10 @@ public class OrderService {
         return orderRepository.findByBillId(billId);
     }
 
+    public void changeOrderStatusByBillId (String billId, String status) {
+        Order order = orderRepository.findByBillId(billId);
+        order.setStatus(status);
+        orderRepository.save(order);
+    }
+
 }

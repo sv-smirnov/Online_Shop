@@ -27,13 +27,13 @@ public class QiwiService {
                         BigDecimal.valueOf(1),
                         Currency.getInstance("RUB")), "Заказ № " + orderId,
                 ZonedDateTime.now().plusDays(45),
-                new Customer("mail@example.org", UUID.randomUUID().toString(), "79123456789"),
+                new Customer(orderService.findOrderById(orderId).getAddress(), UUID.randomUUID().toString(), orderService.findOrderById(orderId).getPhone()),
                 "http://localhost:3000/front/#!/store"
         );
         orderService.findOrderById(orderId).setBillId(billInfo.getBillId());
                 return billInfo;
     }
     public void makePaid (String billId) {
-        orderService.findOrderByBillId(billId).setStatus("COMPLETED");
+        orderService.changeOrderStatusByBillId(billId,"COMPLETED");
     }
 }

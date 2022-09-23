@@ -33,7 +33,8 @@ create table order_items(
 );
 
 insert into orders (username, total_price, address, phone, bill_id, status)
-values ('bob', 200, 'address', '12345', '0', 'not paid');
+values ('bob', 200, 'address', '12345', '0', 'not paid'),
+       ('bob', 100, '1@mail.ru', '8989898989', '0', 'COMPLETED');
 
 insert into order_items (product_id, order_id, quantity, price_per_product, price)
 values (1, 1, 2, 100, 200);

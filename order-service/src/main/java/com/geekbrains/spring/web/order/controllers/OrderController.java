@@ -64,4 +64,11 @@ public class OrderController {
         System.out.println(response.getStatus());
     }
 
+    @Operation(description = "Проверить статус оплаты")
+    @GetMapping ("/status/{orderId}")
+    public String checkOrderStatus(@PathVariable Long orderId) throws IOException, URISyntaxException {
+        System.out.println("Статус заказа № " + orderId + " - " + orderService.findOrderById(orderId).getStatus());
+       return orderService.findOrderById(orderId).getStatus();
+    }
+
 }
