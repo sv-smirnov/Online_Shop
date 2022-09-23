@@ -18,4 +18,8 @@ public class OrderDto {
     private String address;
     @Schema(description = "Контактный телефон", example = "89696969696")
     private String phone;
+    @Schema(description = "Номер заказа в QIWI")
+    private String billId;
+    @Schema(description = "Статус оплаты заказа", example = "COMPLETED")
+    private String status;
 }

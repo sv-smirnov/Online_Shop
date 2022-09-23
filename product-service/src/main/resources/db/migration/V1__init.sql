@@ -16,7 +16,9 @@ create table orders(
     address varchar,
     phone varchar(255),
     created_at timestamp,
-    updated_at timestamp
+    updated_at timestamp,
+    bill_id varchar(255) DEFAULT '0',
+    status varchar(255) DEFAULT 'not paid'
 );
 
 create table order_items(
@@ -30,8 +32,8 @@ create table order_items(
                             updated_at timestamp
 );
 
-insert into orders (username, total_price, address, phone)
-values ('bob', 200, 'address', '12345');
+insert into orders (username, total_price, address, phone, bill_id, status)
+values ('bob', 200, 'address', '12345', '0', 'not paid');
 
 insert into order_items (product_id, order_id, quantity, price_per_product, price)
 values (1, 1, 2, 100, 200);

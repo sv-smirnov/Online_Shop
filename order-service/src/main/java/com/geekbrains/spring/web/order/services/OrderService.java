@@ -50,6 +50,8 @@ public class OrderService {
         order.setPhone(orderDetailsDto.getPhone());
         order.setUsername(username);
         order.setTotalPrice(currentCart.getTotalPrice());
+        order.setBillId(orderDetailsDto.getBillId());
+        order.setStatus(orderDetailsDto.getStatus());
         List<OrderItem> items = currentCart.getItems().stream()
                 .map(o -> {
                     OrderItem orderItem = new OrderItem();

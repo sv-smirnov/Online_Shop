@@ -11,4 +11,8 @@ public class OrderDetailsDto {
     private String address;
     @Schema(description = "Телефон", example = "89696969969")
     private String phone;
+    @Schema(description = "Номер заказа")
+    private String billId;
+    @Schema(description = "Статус оплаты заказа", example = "COMPETED")
+    private String status;
 }

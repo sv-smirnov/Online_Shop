@@ -49,6 +49,7 @@ public class QiwiController {
         BillResponse response = billPaymentClient.getBillInfo(billId);
         if("COMPLETED".equals(response.getStatus())) {
             //ToDo сделать обработку статуса
+            System.out.println("Заказ № " + response.getStatus());
             qiwiService.makePaid(billId);
         }
         return new ResponseEntity<>(response, HttpStatus.OK);

@@ -17,7 +17,7 @@ create table orders(
     phone varchar(255),
     created_at timestamp,
     updated_at timestamp,
-    bill_id varchar(255), DEFAULT '0'
+    bill_id varchar(255) DEFAULT '0',
     status varchar(255) DEFAULT 'not paid'
 );
 
