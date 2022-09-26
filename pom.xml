@@ -10,7 +10,7 @@
 		<module>product-service</module>
 		<module>front-service</module>
         <module>order-service</module>
-		<module>config</module>
+<!--		<module>config</module>-->
 	</modules>
 
 	<parent>

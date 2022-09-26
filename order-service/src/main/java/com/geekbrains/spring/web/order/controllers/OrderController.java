@@ -41,6 +41,7 @@ public class OrderController {
     @PostMapping("/{cartName}")
     public void createOrder(@RequestHeader String username, @RequestBody OrderDetailsDto orderDetailsDto, @PathVariable String cartName){
 //       orderService.createOrder(username, orderDetailsDto, cartName);
+        System.out.println("-----------------ORDER SERVICE: createOrder-----------------");
         String key = username + "/" + cartName;
         kafkaTemplate.send("Orders", key, orderDetailsDto);
     }
@@ -48,18 +49,21 @@ public class OrderController {
     @Operation(description = "Получить текущие заказы по имени пользователя")
     @GetMapping
     public List<OrderDto> getCurrentOrders(@RequestHeader String username){
+        System.out.println("-----------------ORDER SERVICE: getCurrentOrders-----------------");
         return orderService.findOrdersByUsername(username).stream()
                 .map(orderConverter::entityToDto).collect(Collectors.toList());
     }
     @Operation(description = "Получить заказ по id")
     @GetMapping("/{id}")
     public OrderDto getOrderById (@PathVariable Long id){
+        System.out.println("-----------------ORDER SERVICE: getOrderById-----------------");
         return orderConverter.entityToDto(orderService.findOrderById(id));
     }
 
     @Operation(description = "Создать оплату через QIWI")
     @PutMapping ("/qiwi/{orderId}")
     public void createBill(@PathVariable Long orderId) throws IOException, URISyntaxException {
+        System.out.println("-----------------ORDER SERVICE: createBill-----------------");
         BillResponse response = billPaymentClient.createBill(qiwiService.createBill(orderId));
         System.out.println(response.getStatus());
     }
@@ -67,6 +71,7 @@ public class OrderController {
     @Operation(description = "Проверить статус оплаты")
     @GetMapping ("/status/{orderId}")
     public String checkOrderStatus(@PathVariable Long orderId) throws IOException, URISyntaxException {
+        System.out.println("-----------------ORDER SERVICE: checkOrderStatus-----------------");
         System.out.println("Статус заказа № " + orderId + " - " + orderService.findOrderById(orderId).getStatus());
        return orderService.findOrderById(orderId).getStatus();
     }

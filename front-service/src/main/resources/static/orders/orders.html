@@ -14,7 +14,7 @@
             <td>{{order.totalPrice}}</td>
             <td>{{order.status}}</td>
             <td>
-                <button class="btn btn-primary" ng-show="isOrderPaid(order.id)" ng-click="goToPay(order.id)">Оплатить</button>
+                <button class="btn btn-primary" ng-show="order.status == 'not paid'" ng-click="goToPay(order.id)">Оплатить</button>
             </td>
         </tr>
         </tbody>

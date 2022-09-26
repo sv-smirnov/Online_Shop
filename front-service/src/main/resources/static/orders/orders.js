@@ -5,6 +5,7 @@ angular.module('market-front').controller('orderController', function ($scope, $
         $http.get(contextPath + '/orders')
             .then(function (response) {
                 $scope.MyOrders = response.data;
+                $localStorage.MyOrders = response.data;
             });
     };
     $scope.loadCart = function () {
@@ -47,17 +48,6 @@ angular.module('market-front').controller('orderController', function ($scope, $
 
     $scope.goToPay = function (orderId) {
         $location.path('/order_pay/' + orderId);
-    };
-
-    $scope.isOrderPaid = function (orderId) {
-    $http.get('http://localhost:5555/order/api/v1/orders/' + orderId)
-        .then(function (response) {
-        $scope.order = response.data;});
-                if (order.status == "COMPLETED") {
-                    return true;
-                } else {
-                return false;
-                }
     };
 
     $scope.loadOrders();
